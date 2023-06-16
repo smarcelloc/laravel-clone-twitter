@@ -1,0 +1,49 @@
+// https://aka.ms/devcontainer.json
+{
+	"name": "Existing Docker Compose (Extend)",
+	"dockerComposeFile": [
+		"../docker-compose.yml"
+	],
+	"service": "laravel.test",
+	"workspaceFolder": "/var/www/html",
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"bmewburn.vscode-intelephense-client",
+				"xdebug.php-debug",
+				"MehediDracula.php-namespace-resolver",
+				"streetsidesoftware.code-spell-checker",
+				"EditorConfig.EditorConfig",
+				"bradlc.vscode-tailwindcss",
+				"cierra.livewire-vscode",
+				"onecentlin.laravel-blade",
+				"mohamedbenhida.laravel-intellisense"
+			],
+			"settings": {
+				// PHP
+				"php.suggest.basic": false,
+
+				// Blade
+				"emmet.triggerExpansionOnTab": true, // enable tab to expanse emmet tags
+				"blade.format.enable": true, // if you would like to enable blade format
+
+				// Launch
+				"launch": {
+					"configurations": [
+						{
+							"name": "Xdebug Local",
+							"type": "php",
+							"request": "launch",
+							"port": 9003
+						}
+					]
+				}
+			}
+		}
+	},
+	"remoteUser": "sail",
+	"postCreateCommand": "chown -R 1000:1000 /var/www/html"
+	// "forwardPorts": [],
+	// "runServices": [],
+	// "shutdownAction": "none",
+}
