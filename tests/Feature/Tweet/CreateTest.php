@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Livewire\Timeline;
 use App\Http\Livewire\Tweet\Create;
 use App\Models\Tweet;
 use App\Models\User;
@@ -48,4 +49,11 @@ it('should set body as null after submitting a tweet', function() {
     livewire(Create::class)->set('body', 'This is my first tweet')->call('submit')->assertSet('body', null);
 });
 
-todo('should show the tweet on the timeline');
+it('should show the tweet on the timeline', function () {
+    $userLoggedIn = User::factory()->create();
+    actingAs($userLoggedIn);
+
+    $tweet = 'This is my first tweet';
+    livewire(Create::class)->set('body', $tweet)->call('submit');
+    livewire(Timeline::class)->assertSee($tweet);
+});
