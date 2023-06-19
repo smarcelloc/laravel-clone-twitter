@@ -17,7 +17,8 @@
 				"bradlc.vscode-tailwindcss",
 				"cierra.livewire-vscode",
 				"onecentlin.laravel-blade",
-				"mohamedbenhida.laravel-intellisense"
+				"mohamedbenhida.laravel-intellisense",
+                "eamodio.gitlens"
 			],
 			"settings": {
 				// PHP
