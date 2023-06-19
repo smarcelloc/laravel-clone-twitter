@@ -40,5 +40,12 @@ it('the tweet should have a maximum length of 500 characters', function () {
     livewire(Create::class)->set('body', $body)->call('submit')
         ->assertHasErrors(['body' => 'max']);
 });
+
+it('should set body as null after submitting a tweet', function() {
+    $userLoggedIn = User::factory()->create();
+    actingAs($userLoggedIn);
+
+    livewire(Create::class)->set('body', 'This is my first tweet')->call('submit')->assertSet('body', null);
+});
+
 todo('should show the tweet on the timeline');
-todo('should set body as null after submitting a tweet');

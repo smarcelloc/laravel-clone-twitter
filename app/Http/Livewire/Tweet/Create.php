@@ -20,8 +20,8 @@ class Create extends Component
         $this->authorize();
         $this->validation();
         $this->builder();
-
         $this->emit('tweet::created');
+        $this->resetSubmit();
     }
 
     private function authorize(): void
@@ -40,5 +40,10 @@ class Create extends Component
             'body' => $this->body,
             'created_by' => auth()->id()
         ]);
+    }
+
+    private function resetSubmit(): void
+    {
+        $this->body = null;
     }
 }
