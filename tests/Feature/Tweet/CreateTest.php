@@ -20,8 +20,25 @@ it('should be able to create a twitter', function ($tweet) {
 })->with(['This is my first tweet', 'This is my second tweet', 'This is my third tweet']);
 
 
-todo('should make sure that only authenticated users can tweet');
-todo('body is required');
-todo('the tweet should have a maximum length of 500 characters');
+it('should make sure that only authenticated users can tweet', function () {
+    livewire(Create::class)->set('body', 'This is my first tweet')->call('submit')->assertForbidden();
+});
+
+it('body is required', function () {
+    $userLogged = User::factory()->create();
+    actingAs($userLogged);
+
+    livewire(Create::class)->set('body', null)->call('submit')
+        ->assertHasErrors(['body' => 'required']);
+});
+
+it('the tweet should have a maximum length of 500 characters', function () {
+    $userLogged = User::factory()->create();
+    actingAs($userLogged);
+
+    $body = str_repeat('t', 501);
+    livewire(Create::class)->set('body', $body)->call('submit')
+        ->assertHasErrors(['body' => 'max']);
+});
 todo('should show the tweet on the timeline');
 todo('should set body as null after submitting a tweet');
