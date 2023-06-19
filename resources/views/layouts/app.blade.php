@@ -19,9 +19,9 @@
 
 <body class="font-sans antialiased bg-black text-slate-100">
     <div class="container mx-auto min-h-screen grid grid-cols-4">
-        <nav class="block">
-
-        </nav>
+        <div>
+            @include('layouts.navigation')
+        </div>
         <main class="block col-span-2 border-x-[0.5px] border-[#2f3336]"></main>
         <aside class="block"></aside>
     </div>
